@@ -1,0 +1,23 @@
+
+
+	<div class="jumbotron" ng-controller="JogCtrl as jogCtrl">
+		<h3>Login</h3>
+		<hr />
+		<div>
+			<form ng-submit="jogCtrl.login(jogCtrl.jogador)">
+				<div class="form-group">
+					<label>Nickname</label>
+					<input type="texto" class="form-control" placeholder="SuperFulano012" ng-model="jogCtrl.jogador.nickname">
+				</div>
+				<div class="form-group">
+					<label>Senha</label>
+					<input type="password" class="form-control" ng-model="jogCtrl.jogador.senha">
+				</div>
+				<button type="submit" class="btn btn-success">Entrar</button>
+
+				<button type="button" class="btn btn-primary" ng-click="jogCtrl.irTelaCadastrar()">Cadastrar</button>
+			</form>
+		</div>
+		
+
+	</div>

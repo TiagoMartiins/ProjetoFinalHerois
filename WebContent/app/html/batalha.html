@@ -1,0 +1,85 @@
+<div ng-controller="batalhaCtrl as btCtrl" class="row justify-content-md-center m-top-10">
+    <div class="row">
+    <h4 class="col-sm-9"> Jogador Logado: {{btCtrl.jogador.nickname}} </h4>
+    <div class="col-xs-6 col-md-5" >
+    <h3 ng-if="btCtrl.acabouBatalha">Vencedor: {{btCtrl.batalha.vencedor.nickname}}</h3>
+    </div>
+    <div class="col-xs-6 col-md-4" ng-if="btCtrl.isEmpate">
+            <h3> Empate </h3>
+        </div>
+    </div>
+    <div class="row" ng-controller="JogCtrl as jogCtrl">
+        <div class="col-xs-6 col-md-4">
+                <button type="button" class="btn btn-primary"
+                ng-click="jogCtrl.logout()"
+                >Deslogar</button>
+        </div>
+      </div>
+        
+                
+                    <div class="jumbotron" ng-controller="JogCtrl as jogCtrl"  ng-init="jogCtrl.init()">
+                        <hr />
+                        <div ng-if="btCtrl.telaVsJogador">
+                                <div class="col-sm-12 text-center">
+                                        <h3>BATALHA VS JOGADOR</h3>
+                                    </div>
+                            <form ng-submit="btCtrl.batalharVsJogador(btCtrl.jogador2)">
+                                
+                                <div class="form-group"
+                                >
+                                    <label>Jogadores</label>
+                                    <select name="jogador" id="jogador" class="form-control"
+                                        ng-required="true"
+                                        ng-options="jogador as jogador.nickname for jogador in jogCtrl.jogadores" ng-model="btCtrl.jogador2"></select>
+                                        <div ng-if="btCtrl.jogador2.heroi">
+                                                <span> Heroi : {{btCtrl.jogador2.heroi.nome}} </span></br>
+                                                <span>Vida:{{btCtrl.jogador2.heroi.vida}}</span><br>
+                                                <span>Ataque:{{btCtrl.jogador2.heroi.ataque}}</span><br>
+                                                <span>Forca:{{btCtrl.jogador2.heroi.forca}}</span><br>
+                                                <span>Inteligencia:{{btCtrl.jogador2.heroi.inteligencia}}</span><br>
+                                                <span>Defesa:{{btCtrl.jogador2.heroi.defesa}}</span><br>
+                                                <span>Poder:{{btCtrl.jogador2.heroi.poder}}</span><br>
+                                            </div>
+                                </div>
+                                <button type="submit" class="btn btn-success">Jogar</button>
+                            </form>
+                            <button class="btn btn-primary" ng-click="btCtrl.irTelaVsComputador()">Batalhar Vs Computador</button>
+
+                            <table class="table table-condensed table-stripped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                         <th class="btn btn-warning">Log da Batalha</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                         <tr ng-repeat="msg in btCtrl.batalha.log track by $index">
+                                             <td class="bg-success"> {{msg}}</td>
+                                         </tr>
+     
+                                    </tbody>
+                                     
+                                 </table>
+                        </div>
+                        <div ng-if="btCtrl.telaVsComputador">
+                            
+                               <table class="table table-condensed table-stripped table-hover table-bordered">
+                               <thead>
+                                   <tr>
+                                    <th class="btn btn-warning">Log da Batalha</th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                                    <tr ng-repeat="msg in btCtrl.batalha.log track by $index">
+                                        <td  class="bg-success"> {{msg}}</td>
+                                    </tr>
+
+                               </tbody>
+                                
+                            </table>
+                        </div>
+                
+                    </div>
+                  </div>
+              
+     
+</div>
